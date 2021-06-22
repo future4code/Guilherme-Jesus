@@ -90,24 +90,35 @@
 
 // console.log(imprimeInformacoes(objetoUm))
 
-// //3.Resolva os passos a seguir: 
+// //3.Resolva os passos a seguir:
 
-// // a) Crie uma variável de escopo global que guarde um `array` vazio chamada `carrinho`
+// a) 
+
+// const carrinho = []
+
+// // b) 
+
+// const melao = {
+//    nome: ("Melão"),
+//    disponibilidade: true
+// }
+// const melancia = {
+//     nome: ("Melancia"),
+//     disponibilidade: true
+//  }
+//  const uva = {
+//    nome: ("Uva"),
+//    disponibilidade: true
+//  }
+// // c) e d)
+// function adicionaFruta(frutas){
+//     carrinho.push(frutas)
+// }
+// adicionaFruta(melao)
+// adicionaFruta(melancia)
+// adicionaFruta(uva)
+// console.log(carrinho)
 
 
 
-/*b) Crie três novos objetos que representem frutas de um sacolão. 
-Eles devem ter as seguintes propriedades: nome (`string`) e disponibilidade (`boolean` - devem começar como `true`)*/
 
-
-
-/*c) Crie uma função que receba um objeto fruta por parâmetro e coloque-a dentro do array de carrinho.
-Invoque essa função passando os três objetos criados.*/
-
-
-
-/*d) Imprima a variável carrinho e garanta que ela agora seja um array preenchido com três objetos*/
-
-
-
-///////////////////////////NÃO CONSEGUI FAZER O EXERCICIO 3/////////////////////////////
