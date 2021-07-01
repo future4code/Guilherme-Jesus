@@ -5,8 +5,11 @@
   **/
 
 * {
-    margin: 0;
-    padding: 0;
+    margin: 0px 60px;
+    padding: 10px 10px;
+    text-align: center;
+
+
 }
 
 h2 {
@@ -18,6 +21,7 @@ h2 {
 
 input {
     height: 20px;
+    border-bottom: 20px;
     width: 500px;
 }
 
@@ -58,7 +62,8 @@ div img {
 }
 
 .icone {
-    height: 15px;
+    height: 25px;
+    width: 80px;
 }
 
 
@@ -71,10 +76,13 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
+    padding: 30px 230px;
+    text-align: center;
+    
 }
 
 #container-de-descricao>ol {
-    padding: 15px 0px;
+    padding: 100px 0px;
 }
 
 #container-para-comprar {
@@ -111,9 +119,15 @@ td button {
     color: black;
 }
 
+button:active{
+    color: white;
+    background-color: tomato;
+}
+
 .container-do-search {
-    margin-top: 20px;
-    height: 100px;
+    margin-top:30px;
+    border: 1px solid black;
+    height: 200px;
 }
 
 
