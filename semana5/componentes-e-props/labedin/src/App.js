@@ -3,6 +3,7 @@ import './App.css';
 import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import minhaFoto from './minhaFoto.png';
+import CardPequeno from './components/CardPequeno/CardPequeno';
 
 
 function App() {
@@ -21,8 +22,18 @@ function App() {
           texto="Ver mais"
         />
       </div>
+         
+         <div>
+           <h4>Email:</h4>
+           <h4>Endereço:</h4>
+           <CardPequeno
+           email = 'CubaJunior@gmail.com'
+           endereço ='Rua Booleanos' 
+           
+           />
+          </div>
 
-      <div className="page-section-container">
+       <div className="page-section-container">
         <h2>Experiências profissionais</h2>
         <CardGrande 
           imagem="https://s3.amazonaws.com/future4.com.br/static/headf4-c492117ca2373dc85ca81bf715b3dc2a.png" 
