@@ -4,7 +4,8 @@ import CardGrande from './components/CardGrande/CardGrande';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import minhaFoto from './minhaFoto.png';
 import CardPequeno from './components/CardPequeno/CardPequeno';
-
+import MeuEmail from './MeuEmail.png';
+import MeuEndereco from './MeuEndereco.png';
 
 function App() {
   return (
@@ -22,15 +23,19 @@ function App() {
           texto="Ver mais"
         />
       </div>
-         
-         <div>
-           <h4>Email:</h4>
-           <h4>Endereço:</h4>
-           <CardPequeno
-           email = 'CubaJunior@gmail.com'
-           endereço ='Rua Booleanos' 
-           
+      <div>
+      <div>
+           <CardPequeno 
+           imagem = {MeuEmail}
+           texto = ' Email:'
+           email = ' Guilherme@gmail.com'
            />
+           <CardPequeno
+           imagem = {MeuEndereco}
+           texto = 'Endereço:'
+           endereço = 'Rua Booleanos'
+           />
+          </div>
           </div>
 
        <div className="page-section-container">
