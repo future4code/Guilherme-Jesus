@@ -11,33 +11,33 @@ import { render } from '@testing-library/react'
 
 const Post = (props) => {
   const [curtido, setCurtido] = useState(false)
-  const [numeroCurtidas, setnumeroCurtidas] = useState(0)
-  const [comentando, setcomentando] = useState(false)
-  const [numeroComentarios, setnumeroComentarios] = useState(0)
-  const [comentarios, setcomentarios] = useState([])
+  const [numeroCurtidas, setNumeroCurtidas] = useState(0)
+  const [comentando, setComentando] = useState(false)
+  const [numeroComentarios, setNumeroComentarios] = useState(0)
+  const [comentarios, setComentarios] = useState([])
 
 
   const onClickCurtida = () => {
     if (curtido) {
       setCurtido(!curtido)
-      setnumeroCurtidas(numeroCurtidas + 1)
+      setNumeroCurtidas(numeroCurtidas + 1)
     } else {
       setCurtido(!curtido)
-      setnumeroCurtidas(numeroCurtidas + 1)
+      setNumeroCurtidas(numeroCurtidas + 1)
     }
   };
 
   const onClickComentario = () => {
-    setcomentando({
-      setcomentando: !comentando
+    setComentando({
+      setComentando: !comentando
     })
   };
 
   const enviarComentario = (comentario) => {
-    setnumeroComentarios(numeroComentarios + 1)
+    setNumeroComentarios(numeroComentarios + 1)
     const listaDeComentarios = [...comentarios, comentario]
-    setcomentando(false)
-    setcomentarios(listaDeComentarios)
+    setComentando(false)
+    setComentarios(listaDeComentarios)
   }
 
 
@@ -48,10 +48,10 @@ const Post = (props) => {
   const iconeCurtida = curtido ? (iconeCoracaoPreto) : (iconeCoracaoBranco)
 
 
-  const caixaDeComentario = setcomentando ? (
+  const caixaDeComentario = comentando ? (
     <SecaoComentario enviarComentario={enviarComentario} />
   ) : (
-    setcomentarios.map(comentario => {
+    comentarios.map((comentario) => {
       return (
         <CommentContainer>
           <p> {comentario}</p>
