@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 
 
 export default function TelaInicial() {
-    const [chooseId, setChooseId] = useState([])
-    const [choose, setChoose] = useState(true)
+    const [chooseId, setChooseId] = useState()
     const [getProfile, setGetProfile] = useState({})
 
 
@@ -12,7 +11,8 @@ export default function TelaInicial() {
         axios
             .get('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/guilherme-jesus/person')
             .then((res) => {
-                setGetProfile(res.data)
+                console.log("logica",res.data.profile)
+                setGetProfile(res.data.profile)
             })
             .catch((err) => {
                 console.log(err.response)
@@ -21,26 +21,25 @@ export default function TelaInicial() {
     }
     const postChoose = () => {
         axios
-            .post('https://us-central1-missao-newton.cloudfunctions.net/astroMatch/guilherme-jesus/choose-person')
+            .post(`https://us-central1-missao-newton.cloudfunctions.net/astroMatch/guilherme-jesus/${chooseId}`,{headers:'Content-Type:application/json'})
             .then((res) => {
-                setChooseId(res.data)
+                setChooseId(res.data.headers)
             })
             .catch((err) => {
-                console.log(err)
+                console.log(err.data)
             })
 
     }
     useEffect(()=>{
-        postChoose()
-    },[setGetProfile])
+        getProfileToChoose()
+    },[postChoose()])
     
        return (
         <div>
-            <h4>Astromatch</h4>
-         <p>{getProfile.name}</p>
-         <p>{getProfile.age}</p>
-         <p>{getProfile.bio}</p>
-
+            <h1>Astromatch</h1>
+            <strong><p>{getProfile.name}</p></strong>
+            <strong><p>{getProfile.age}</p></strong>
+            <strong><p>{getProfile.bio}</p></strong>
         </div>
 
 
