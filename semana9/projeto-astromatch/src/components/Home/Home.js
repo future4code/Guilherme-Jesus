@@ -57,6 +57,7 @@ export default function Home(props) {
             <strong><p>{getProfile.name}</p></strong>
             <strong><p>{getProfile.age}</p></strong>
             <strong><p>{getProfile.bio}</p></strong>
+            <button onClick = {()=> postChoose(true)}>Like</button>
             <button onClick = {props.changePage('matches')}>Voltar a Página</button>
         </div>
 

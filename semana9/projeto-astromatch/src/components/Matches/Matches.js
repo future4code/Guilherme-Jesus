@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
 const Matches = (props)=>{
-    const[profileMatchs,setProfileMatchs]=useState( )
+    const[profileMatchs,setProfileMatchs]=useState([])
     
     const getProfileMatch = () => {
         axios
@@ -20,9 +20,12 @@ const Matches = (props)=>{
     },[])
     
 
-
+// const profilesList = profileMatchs.map((perfil)=>{
+//     return <li key={perfil}>{perfil}</li>
+// })
     return(
         <div>
+            {/* {profilesList} */}
       <button onClick = {()=>props.changePage('matches')}>Lista de Matches</button>
         </div>
     )
