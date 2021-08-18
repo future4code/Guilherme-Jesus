@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom'
 
 
 export const ApplicationFormPage = () => {
-
 const history = useHistory()
 
 const goBackTripList = () =>{
