@@ -28,7 +28,7 @@ export const ListTripsPage = () => {
 
     useEffect(() => {
         getTripsList()
-    }, [])
+    }, [] )
 
 
     const tripsComponents = listTrips && listTrips.map((list) => {
@@ -36,9 +36,9 @@ export const ListTripsPage = () => {
             <div key={list.id}>
                 <hr />
                 <p>Nome: {list.name}</p>
-                <p>Descrição: {list.description}</p>
+                <p>Descrição da viagem: {list.description}</p>
                 <p>Planeta: {list.planet}</p>
-                <p>Duração: {list.durationInDays}</p>
+                <p>Duração: {list.durationInDays}dias</p>
                 <p>Data: {list.date}</p>
             </div>
         )
