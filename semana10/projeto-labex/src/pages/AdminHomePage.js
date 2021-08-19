@@ -1,4 +1,5 @@
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 
 export const AdminHomePage = () => {
@@ -6,7 +7,7 @@ export const AdminHomePage = () => {
     
     
     const goToBack = () =>{
-        history.goBack()
+        history.push('/')
     }
     const registerForm = () =>{
         history.push('/admin/trips/create')
