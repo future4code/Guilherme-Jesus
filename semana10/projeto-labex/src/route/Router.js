@@ -1,6 +1,6 @@
 import React from "react"
 import { AdminHomePage } from "../pages/AdminHomePage"
-import { CreateTripPage } from "../pages/CreateTripPage"
+import { CreateTripsPage } from "../pages/CreateTripsPage"
 import { HomePage } from "../pages/HomePage";
 import { ListTripsPage } from "../pages/ListTripsPage";
 import { LoginPage } from "../pages/LoginPage";
@@ -33,13 +33,13 @@ export const Router = () =>{
         <Route exact path={'/admin/trips/list'}>
           <AdminHomePage />
         </Route>
-        /admin/trips/create
-        <Route exact path={'/admin/trips/:id'}>
-          <TripDetailsPage />
+        
+        <Route exact path={'/admin/trips/create'}>
+        <CreateTripsPage/>
         </Route>
 
-        <Route exact path={'/admin/trips/create'}>
-          <CreateTripPage />
+        <Route exact path={'/admin/trips/:id'}>
+        <TripDetailsPage/>
         </Route>
 
       </Switch>

@@ -1,62 +1,53 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
-
+import useHook from '../hooks/useHook'
 export const LoginPage = () => {
+    const { form, onChange } = useHook({ email: '', password: '' })
     const history = useHistory()
 
     const goToBackHome = () => {
         history.push('/')
     }
 
-
-
-
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-
-    const onChangeEmail = (event) =>{
-        setEmail(event.target.value)
-    }
-    
-    const onChangePassword = (event) =>{
-        setPassword(event.target.value)
-    }
-
-    const submitLogin = () =>{
-        console.log(email,password)
-        const body = {
-            email: email,
-            password: password
-        }
+    const submitLogin = (event) => {
+        event.preventDefault()
         axios
-        .post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/login',body)
-        .then((res)=>{
-         console.log(res.data.token)
-         localStorage.setItem('token',res.data.token)
-         history.push('/admin/trips/list')
-        })
-        .catch((err)=>{
-            console.log(err.response)
-        })
+            .post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/login', form)
+            .then((res) => {
+                console.log(res.data.token)
+                localStorage.setItem('token', res.data.token)
+                history.push('/admin/trips/list')
+            })
+            .catch((err) => {
+                console.log(err.response)
+            })
     }
 
     return (
         <div>
             <h1>Login</h1>
-            <input
-                type = 'email'
-                value={email}
-                onChange={onChangeEmail}
-                placeholder="Email"
-            />
-             <input
-                value={password}
-                onChange={onChangePassword}
-                placeholder="Senha"
-            />
-            <button onClick={goToBackHome}>Voltar</button>
-            <button onClick={submitLogin}>Entrar</button>
+            <form onSubmit={submitLogin}>
+                <input
+                    name='email'
+                    type='email'
+                    value={form.email}
+                    onChange={onChange}
+                    placeholder="Email"
+                    required
+                />
+                <input
+                    name='password'
+                    type='password'
+                    value={form.password}
+                    onChange={onChange}
+                    placeholder="Senha"
+                    pattern={"^.{4,}"}
+                    title={"Sua senha deve ter no mínimo 4 caractéres"}
+                />
+                <button onClick={goToBackHome}>Voltar</button>
+                <button>Entrar</button>
+            </form>
         </div>
     )
 }

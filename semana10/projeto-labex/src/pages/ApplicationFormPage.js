@@ -1,102 +1,105 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-
+import useHook from '../hooks/useHook'
 
 export const ApplicationFormPage = () => {
     const history = useHistory()
-
     const goBackTripList = () => {
         history.goBack()
     }
+    const { form, onChange } = useHook({ planet:'', name: '', age: '', applicationText: '', profession: '', country: '' })
 
 
-    const [nameInput, setNameInput] = useState('')
-    const [ageInput, setAgeInput] = useState('')
-    const [applicationTextInput, setApplicationTextInput] = useState('')
-    const [professionInput, setProfessionInput] = useState('')
-    const [countryInput, setCountryInput] = useState([])
-    const [userTrip, setUserTrip] = useState([])
+    const applyTrip = (event) => {
+        console.log('formulario enviado')
+        event.preventDefault()
+        axios
+            .post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/trips/id/apply')
+            .then((res) => {
+                form('Deu bão', res.data.trips)
+            })
+            .catch((err) => {
+                console.log('Xii deu ruim', err.data)
+            })
 
-    const addUserTrip = () => {
-        const newUserTrip = [...userTrip]
-        newUserTrip.push({
-            name: nameInput,
-            age: ageInput,
-            applicationText: applicationTextInput,
-            profession: professionInput,
-            country: countryInput
-        })
-        setUserTrip(newUserTrip)
-        setNameInput('')
-        setAgeInput('')
-        setApplicationTextInput('')
-        setProfessionInput('')
-        setCountryInput([])
     }
-
-    const applyTrip = () =>{
-     axios 
-     .post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/trips/:id/apply')
-     .then((res)=>{
-         console.log(res.data)
-        setUserTrip(res.data)
-     })
-     .catch((err)=>{
-         console.log(err.data)
-     })
-    
-    }
-    useEffect(() => {
-        applyTrip()
-    }, [])
+    // useEffect(() => {
+    //     applyTrip()
+    // }, [])
 
 
 
-
+    // Mercúrio
+    // Vênus
+    // Terra
+    // Marte
+    // Júpiter
+    // Saturno
+    // Urano
+    // Netuno
 
     return (
         <div>
             <h2>Inscreva-se para uma viagem</h2>
-            <div>
+            <form onSubmit={applyTrip}>
+            <select>
+                    <option
+                        name='planet'
+                        value={form.planet}
+                        onChange={onChange}
+                        placeholder="Escolha um Planeta">
+                    </option>
+                </select>
                 <input
                     name='name'
-                    value={nameInput}
-                    onChange={(event) => setNameInput(event.target.value)}
+                    type={'name'}
+                    value={form.name}
+                    onChange={onChange}
                     placeholder="Nome"
+                    pattern={'^.{3,}'}
+                    title={'O campo nome deve ter no mínimo 3 letras'}
 
                 />
                 <input
                     name='age'
-                    value={ageInput}
-                    onChange={(event) => setAgeInput(event.target.value)}
+                    type={'number'}
+                    min={18}
+                    value={form.age}
+                    onChange={onChange}
                     placeholder="Idade"
+                    required
                 />
                 <input
                     name='applicationText'
-                    value={applicationTextInput}
-                    onChange={(event) => setApplicationTextInput(event.target.value)}
+                    type='text'
+                    value={form.applicationText}
+                    onChange={onChange}
                     placeholder="Texto de Candidatura"
+                    pattern={'^.{30,}'}
+                    title={'O campo Texto de candidatura deve ter no mínimo 30 caracteres'}
 
                 />
+                <select>
+                    <option
+                        name='country'
+                        value={form.country}
+                        onChange={onChange}
+                        placeholder="País">
+                    </option>
+                </select>
                 <input
-                    name='País'
-                    value={countryInput}
-                    onChange={(event) => setCountryInput(event.target.value)}
-                    placeholder="País"
-                />
-                <input
-                    name='Profissão'
-                    value={professionInput}
-                    onChange={(event) => setProfessionInput(event.target.value)}
+                    name='profession'
+                    type={'text'}
+                    value={form.profession}
+                    onChange={onChange}
                     placeholder="Profissão"
+                    pattern={'^.{10,}'}
+                    title={'O campo profissão deve ter no mínimo 10 caracteres'}
                 />
-            </div>
-
-
+                <button>Enviar</button>
+            </form>
             <button onClick={goBackTripList}>Voltar</button>
-            <button onClick={addUserTrip}>Enviar</button> 
-            
         </div>
     )
 }
