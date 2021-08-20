@@ -13,11 +13,8 @@ const CandidatesContainer = styled.div`
 
 p,b{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
-b{
     color: coral;
 }
-
 `
 const ButtonsContainer = styled.button`
 padding: 10px;
