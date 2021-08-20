@@ -1,20 +1,43 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
 
+const AdminContainer = styled.div`
+button{
+  padding: 10px;
+  margin: 10px;
+  color: darkorange;
+  font-size: 24px;
+  margin: 1em;
+  padding: 24px;
+  border: 2px solid darkorange;
+  border-radius: 10px;
+}
+`
+const ButtonsContainer = styled.button`
+padding: 10px;
+margin: 20px;
+ color: darkorange;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid darkorange;
+  border-radius: 3px;
+`
 export const AdminHomePage = () => {
     const history = useHistory()
-    
-    
-    const goToBack = () =>{
+
+
+    const goToBack = () => {
         history.push('/')
     }
-    
-    const idTrip = ()=>{
+
+    const idTrip = () => {
         history.push('/admin/trips/:id')
     }
 
-    const registerFormTrip = () =>{
+    const registerFormTrip = () => {
         history.push('/admin/trips/create')
     }
     const [listTrips, setListTrips] = useState([])
@@ -26,7 +49,7 @@ export const AdminHomePage = () => {
             .then((res) => {
                 console.log(res.data.trips)
                 setListTrips(res.data.trips)
-                
+
             })
             .catch((err) => {
                 console.log(err.data.trips)
@@ -35,26 +58,27 @@ export const AdminHomePage = () => {
 
     useEffect(() => {
         getTripsList()
-    }, [] )
+    }, [])
 
 
     const tripsComponents = listTrips && listTrips.map((list) => {
         return (
-            <div>
-                <button onClick={idTrip} key={list.id}>{list.name} </button>
-                <hr />
-            </div>
+            <AdminContainer>
+                <div>
+                    <button onClick={idTrip} key={list.id}>{list.name} </button>
+                </div>
+            </AdminContainer>
         )
     })
 
-    
+
     return (
 
         <div>
             <h1>Painel Administrativo</h1>
-            <button onClick = {goToBack}>Voltar</button>
-            <button onClick = {registerFormTrip}>Criar Viagem</button>
-            <button>Logout</button>
+            <ButtonsContainer onClick={goToBack}>Voltar</ButtonsContainer>
+            <ButtonsContainer onClick={registerFormTrip}>Criar Viagem</ButtonsContainer>
+            <ButtonsContainer>Logout</ButtonsContainer>
             {tripsComponents}
         </div>
     )

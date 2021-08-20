@@ -1,6 +1,36 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
+import styled from 'styled-components'
+
+const ListPageContainer = styled.div`
+    box-shadow: -33px -24px 3px -14px rgba(241, 198, 101, 0.84);
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 9px 0px;
+    width: 70vh;
+
+p,b{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+b{
+    color: coral;
+}
+
+`
+const ButtonContainer = styled.button`
+  color: darkorange;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid darkorange;
+  border-radius: 3px;
+
+
+`
+
+
+
 
 export const ListTripsPage = () => {
     const history = useHistory()
@@ -25,6 +55,7 @@ export const ListTripsPage = () => {
                 console.log(err.data.trips)
             })
     }
+    
 
     useEffect(() => {
         getTripsList()
@@ -33,23 +64,26 @@ export const ListTripsPage = () => {
 
     const tripsComponents = listTrips && listTrips.map((list) => {
         return (
+            <ListPageContainer> 
             <div key={list.id}>
-                <hr />
-                <p>Nome: {list.name}</p>
-                <p>Descrição da viagem: {list.description}</p>
-                <p>Planeta: {list.planet}</p>
-                <p>Duração: {list.durationInDays}dias</p>
-                <p>Data: {list.date}</p>
+                <p><b>Nome:</b> {list.name}</p>
+                <p><b>Descrição da viagem:</b> {list.description}</p>
+                <p><b>Planeta: </b>{list.planet}</p>
+                <p><b>Duração: </b>{list.durationInDays}dias</p>
+                <p><b>Data:</b> {list.date}</p>
             </div>
+            </ListPageContainer>
         )
     })
 
     return (
-        <div>
-            <button onClick={goToBack}>Voltar</button>
-            <button onClick={goToFormPage}>Inscrever-se</button>
+       
+    <div> 
+        <ButtonContainer onClick={goToBack}>Voltar</ButtonContainer>
+        <ButtonContainer onClick={goToFormPage}>Inscrever-se</ButtonContainer>
             <h1>Lista de Viagens</h1>
             {tripsComponents}
         </div>
-    )
+        
+    ) 
 }
