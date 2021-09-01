@@ -2,28 +2,66 @@
 import React from 'react'
 import useProtectedpage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
-import {BASE_URL} from '../../constants/urls'
+import { BASE_URL } from '../../constants/urls'
+import { AddPostFeed, ContainerFeed } from './styled'
+import { Avatar, CardContent, CardHeader, IconButton, Typography } from '@material-ui/core'
+import { Add } from '@material-ui/icons'
+
 
 
 const FeedPage = () => {
-    useProtectedpage() 
-    const feed = useRequestData([],`${BASE_URL}/posts`)
+    useProtectedpage()
+    const feed = useRequestData([], `${BASE_URL}/posts`)
     console.log(feed)
-   
-    const cardsOfFeed = feed.map((cards)=>{
-        return <p key={cards}>{cards.id}</p>
 
+    const cardsOfFeed = feed && feed.map((cards) => {
+        return (
+        <ContainerFeed key={cards.id}>
+                <CardContent >
+                    <CardHeader
+                        avatar={<Avatar aria-label="recipe" className={cards.username.avatar}></Avatar>}
+                        action={<IconButton aria-label="settings"></IconButton>}
+                        title={cards.username}
+                        subheader={cards.createdAt}
+                    />
+                    <Typography className={cards.title} color="textSecondary" gutterBottom>
+                        {cards.title}
+                    </Typography>
+                    <Typography className={cards.body} variant="h5" component="h5" color="textPrimary" >
+                        {cards.body}
+                    </Typography>
+                </CardContent>
+            </ContainerFeed>
+
+
+
+
+
+        )
     })
 
     return (
         <div>
-            <h1>Página do Feed</h1>
-            <p>{cardsOfFeed}</p>
-            
+        <h1>Página do Feed</h1>
+        {cardsOfFeed}
+        <AddPostFeed 
+        color={'primary'}>
+            <Add/>
+        </AddPostFeed>
         </div>
-
-
+        
     )
 }
 
 export default FeedPage
+
+
+// body: "Text12"
+// commentCount: null
+// createdAt: "2021-09-01T18:06:54.667Z"
+// id: "fd08cf3a-d4af-4ace-bae1-26cee07d6e6a"
+// title: "Test12"
+// userId: "aa8fc63a-c5ec-4f65-a30d-9e89526ed51c"
+// userVote: null
+// username: "KG"
+// voteSum: "1"

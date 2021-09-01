@@ -2,8 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 
-const useRequestData = (initialState, url) => {
-    const [data, setData] = useState(initialState)
+const useRequestData = (initialData, url) => {
+    const [data, setData] = useState(initialData)
 
     useEffect(() => {
         axios.get(url, {
@@ -11,9 +11,9 @@ const useRequestData = (initialState, url) => {
                 Authorization: localStorage.getItem('token')
             }
         })
-            .then((res) => {
-                console.log(res.data)
-                setData(res.data)
+            .then((response) => {
+                console.log(response.data)
+                setData(response.data)
             })
             .catch((err) => {
                 console(err)
@@ -21,7 +21,7 @@ const useRequestData = (initialState, url) => {
             })
         },[url])
 
-       return [data]
+       return (data)
 }    
 
 
