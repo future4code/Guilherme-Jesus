@@ -6,34 +6,41 @@ import { BASE_URL } from '../../constants/urls'
 import { AddPostFeed, ContainerFeed } from './styled'
 import { Avatar, CardContent, CardHeader, IconButton, Typography } from '@material-ui/core'
 import { Add } from '@material-ui/icons'
-
-
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { goToAddPost, goToPost } from '../../routes/coordinator'
+import { useHistory } from 'react-router-dom'
+import ChatIcon from '@material-ui/icons/Chat';
 
 const FeedPage = () => {
     useProtectedpage()
+    const history = useHistory()
     const feed = useRequestData([], `${BASE_URL}/posts`)
     console.log(feed)
 
+    const onClickCard = (id) => {
+        goToPost(history, id)
+    }
+
+
+
     const cardsOfFeed = feed && feed.map((cards) => {
         return (
-        <ContainerFeed key={cards.id}>
-                <CardContent >
+            <ContainerFeed key={cards.id}>
+                <CardContent onClick={() => onClickCard(cards.id)}>
                     <CardHeader
                         avatar={<Avatar aria-label="recipe" className={cards.username.avatar}></Avatar>}
                         action={<IconButton aria-label="settings"></IconButton>}
                         title={cards.username}
                         subheader={cards.createdAt}
                     />
-                    <Typography className={cards.title} color="textSecondary" gutterBottom>
-                        {cards.title}
-                    </Typography>
-                    <Typography className={cards.body} variant="h5" component="h5" color="textPrimary" >
-                        {cards.body}
-                    </Typography>
+                    <Typography color="textSecondary" gutterBottom>{cards.title}</Typography>
+                    <Typography variant="h5" component="h5" color="textPrimary" >{cards.body}</Typography>
                 </CardContent>
+                <ArrowUpwardIcon fontSize="large" color="secondary" >{cards.userVote}</ArrowUpwardIcon>
+                <ArrowDownwardIcon fontSize="large" color="primary">{cards.voteSum}</ArrowDownwardIcon>
+                <ChatIcon fontSize="large"> {cards.commentCount} Comentários</ChatIcon>
             </ContainerFeed>
-
-
 
 
 
@@ -42,14 +49,16 @@ const FeedPage = () => {
 
     return (
         <div>
-        <h1>Página do Feed</h1>
-        {cardsOfFeed}
-        <AddPostFeed 
-        color={'primary'}>
-            <Add/>
-        </AddPostFeed>
+            <h1>Página do Feed</h1>
+            {cardsOfFeed}
+            <AddPostFeed
+                color={'primary'}
+                onClick = {()=>goToAddPost(history)}
+                >
+                <Add />
+            </AddPostFeed>
         </div>
-        
+
     )
 }
 

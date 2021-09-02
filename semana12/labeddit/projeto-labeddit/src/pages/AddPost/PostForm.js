@@ -1,56 +1,53 @@
 import { Button, TextField } from '@material-ui/core'
 import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
-import { login } from '../../services/user'
+import { createPost } from '../../services/user'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 
-const LoginForm = ({setRightButton}) => {
-    const [form, onChange, clear] = useForm({ email: "", password: "" })
-    const history = useHistory()
-    const [isLoading, setIsLoading] = useState(false)
 
+
+
+const PostForm = () => {
+    const [form, onChange, clear] = useForm({ title: "", body: "" })
+    const [isLoading, setIsLoading] = useState(false)
     const onSubmitForm = (event) => {
         event.preventDefault()
-        login(form, clear, history, setRightButton, setIsLoading)
+        createPost(form, clear, setIsLoading)
     }
 
 
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Criar Post</h1>
             <form onSubmit={onSubmitForm}>
                 <TextField
-                    name={'email'}
-                    value={form.email}
+                    name={'title'}
+                    value={form.title}
                     onChange={onChange}
-                    label={"E-mail"}
+                    label={"Título"}
                     variant={'outlined'}
                     fullWidth
-                    margin={'dense'}
                     required
-                    type={'email'}
+                    type={'title'}
                 />
                 <TextField
-                    name={'password'}
-                    value={form.password}
+                    name={'body'}
+                    value={form.body}
                     onChange={onChange}
-                    label={"Senha"}
+                    label={"Descrição"}
                     variant={'outlined'}
                     fullWidth
-                    margin={'dense'}
                     required
-                    type={'password'}
+                    type={'body'}
                 />
                 <Button
                     type={'onSubmit'}
                     fullWidth
                     variant={'contained'}
                 >
-                    {isLoading? <CircularProgress size= {40} color ={'primary'}/> : <>Login</>}
-                    
+                    {isLoading ? <CircularProgress size= {40} color ={'primary'}/> : <>Enviar</>}
                     </Button>
             </form>
         </div>
@@ -59,4 +56,4 @@ const LoginForm = ({setRightButton}) => {
     )
 }
 
-export default LoginForm
+export default PostForm

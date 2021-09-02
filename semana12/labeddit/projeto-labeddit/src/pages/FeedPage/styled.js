@@ -8,15 +8,24 @@ export const ContainerFeed = styled.div`
 	border: 2px;
 	border-style: solid ;
     max-width: 380px;
+    min-width: 400px;
     display: flex;
     flex-direction: column;
+    margin-bottom:30px;
+    justify-items:center;
+    margin: 40px 40%;
+`
+export const PositionContainer = styled.div`
+justify-content: center;
+
+
 `
 
 export const AddPostFeed = styled(Fab)`
 position: fixed !important;
 right: 20px;
 bottom: 20px;
-z-index:3
+z-index:3;
 
 
 `
