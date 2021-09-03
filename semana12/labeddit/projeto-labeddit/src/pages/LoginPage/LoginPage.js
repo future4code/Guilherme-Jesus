@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import useUnprotectedPage from '../../hooks/useUnprotectedPage'
 import { goToSignUp } from '../../routes/coordinator'
 import LoginForm from './LoginForm'
-
+import {ButtonCadastrar} from './styled'
 
 
 const LoginPage = ({setRightButton}) => {
@@ -13,12 +13,12 @@ const history = useHistory()
     return (
         <div>
             <LoginForm setRightButton = {setRightButton} />
-            <Button
+            <ButtonCadastrar
                 onClick = {()=>goToSignUp(history)}
                 type={'onSubmit'}
-                fullWidth
                 variant={'text'}
-            >Cadastrar-se aqui</Button>
+                fullWidth
+            >Cadastrar-se aqui</ButtonCadastrar>
         </div>
     )
 }

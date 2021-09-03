@@ -7,7 +7,6 @@ const theme = createTheme({
         primary: {
             main: primaryColor
         }
-
     }
 });
 

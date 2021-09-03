@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import useUnprotectedPage from '../../hooks/useUnprotectedPage'
 import { signUp } from '../../services/user'
+import { ContainerAll, StyledButton, StyledForm } from './styled'
 
 
 
@@ -19,49 +20,46 @@ const SignUpForm = ({setRightButton}) => {
 
     return (
 
-        <div>
+        <ContainerAll maxWidth="sm">
             <h1>Cadastro</h1>
             <form onSubmit={onSubmitSignUp}>
-                <TextField
+                <StyledForm
                     name={'username'}
                     value={form.username}
                     onChange={onChange}
                     label={"Nome"}
                     variant={'outlined'}
-                    fullWidth
                     margin={'dense'}
                     required
                     type={'username'}
                 />
-                <TextField
+                <StyledForm 
                     name={'email'}
                     value={form.email}
                     onChange={onChange}
                     label={"E-mail"}
                     variant={'outlined'}
-                    fullWidth
                     margin={'dense'}
                     required
                     type={'email'}
                 />
-                <TextField
+                <StyledForm 
                     name={'password'}
                     value={form.password}
                     onChange={onChange}
                     label={"Senha"}
                     variant={'outlined'}
-                    fullWidth
                     margin={'dense'}
                     required
                     type={'password'}
                 />
-                <Button
+                <StyledButton
                     type = "submit"
-                    fullWidth
                     variant={'contained'}
-                >Cadastrar</Button>
+                    margin = {'dense'}
+                >Cadastrar</StyledButton>
             </form>
-        </div>
+        </ContainerAll >
 
 
     )

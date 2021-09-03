@@ -3,9 +3,8 @@ import React from 'react'
 import useProtectedpage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
 import { BASE_URL } from '../../constants/urls'
-import { AddPostFeed, ContainerFeed } from './styled'
+import { ContainerFeed, PostFooter } from './styled'
 import { Avatar, CardContent, CardHeader, IconButton, Typography } from '@material-ui/core'
-import { Add } from '@material-ui/icons'
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { goToAddPost, goToPost } from '../../routes/coordinator'
@@ -38,9 +37,11 @@ const FeedPage = () => {
                     <Typography color="textSecondary" gutterBottom>{cards.title}</Typography>
                     <Typography variant="h5" component="h5" color="textPrimary" >{cards.body}</Typography>
                 </CardContent>
+                <PostFooter>
                 <ArrowUpwardIcon fontSize="large" color="secondary" >{cards.userVote}</ArrowUpwardIcon>
                 <ArrowDownwardIcon fontSize="large" color="primary">{cards.voteSum}</ArrowDownwardIcon>
                 <ChatIcon fontSize="large"> {cards.commentCount} Comentários</ChatIcon>
+                </PostFooter>
             </ContainerFeed>
 
 

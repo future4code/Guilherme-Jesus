@@ -27,8 +27,6 @@ const PostForm = () => {
                     value={form.title}
                     onChange={onChange}
                     label={"Título"}
-                    variant={'outlined'}
-                    fullWidth
                     required
                     type={'title'}
                 />
@@ -37,14 +35,11 @@ const PostForm = () => {
                     value={form.body}
                     onChange={onChange}
                     label={"Descrição"}
-                    variant={'outlined'}
-                    fullWidth
                     required
                     type={'body'}
                 />
                 <Button
                     type={'onSubmit'}
-                    fullWidth
                     variant={'contained'}
                 >
                     {isLoading ? <CircularProgress size= {40} color ={'primary'}/> : <>Enviar</>}

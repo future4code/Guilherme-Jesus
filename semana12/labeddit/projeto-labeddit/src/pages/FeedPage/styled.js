@@ -1,15 +1,14 @@
-import { Fab } from '@material-ui/core'
 import styled from 'styled-components'
 
 export const ContainerFeed = styled.div`
+    background-color:#87CEEB;
 	padding: 30px;
-    height: 500px;
-	border-radius: 10px;
-	border: 2px;
+    height: 200px;
+	border-radius: 20px;
+	border: 1px;
 	border-style: solid ;
-    max-width: 380px;
+    max-width: 300px;
     min-width: 400px;
-    display: flex;
     flex-direction: column;
     margin-bottom:30px;
     justify-items:center;
@@ -20,12 +19,11 @@ justify-content: center;
 
 
 `
-
-export const AddPostFeed = styled(Fab)`
-position: fixed !important;
-right: 20px;
-bottom: 20px;
-z-index:3;
-
-
+export const PostFooter = styled.div`
+  height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  justify-content: space-between;
 `
+

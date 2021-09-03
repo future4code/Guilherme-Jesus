@@ -17,7 +17,7 @@ const useRequestData = (initialData, url) => {
             })
             .catch((err) => {
                 console.log(err)
-                alert("Tente novamente")
+                alert("Área Restrita")
             })
         },[url])
 

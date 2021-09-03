@@ -24,8 +24,9 @@ const PostPage = () => {
             title = {posts && posts.username}
             />
             <Typography  align={'center'} variant={"h3"}>{posts && posts.body}</Typography>
-            <AddComment/>
+            
             </ContainerTamPost>
+            <AddComment/>
         </ContainerPostId>
          
         

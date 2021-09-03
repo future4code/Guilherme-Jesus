@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import useForm from '../../hooks/useForm'
 import { login } from '../../services/user'
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { ContainerAll, StyledButton, StyledForm } from './styled'
 
 
 const LoginForm = ({setRightButton}) => {
@@ -19,41 +20,38 @@ const LoginForm = ({setRightButton}) => {
 
 
     return (
-        <div>
+        <ContainerAll maxWidth="sm">
             <h1>Login</h1>
             <form onSubmit={onSubmitForm}>
-                <TextField
+                <StyledForm
                     name={'email'}
                     value={form.email}
                     onChange={onChange}
                     label={"E-mail"}
                     variant={'outlined'}
-                    fullWidth
                     margin={'dense'}
                     required
                     type={'email'}
                 />
-                <TextField
+                <StyledForm
                     name={'password'}
                     value={form.password}
                     onChange={onChange}
                     label={"Senha"}
                     variant={'outlined'}
-                    fullWidth
                     margin={'dense'}
                     required
                     type={'password'}
                 />
-                <Button
+                <StyledButton
                     type={'onSubmit'}
-                    fullWidth
                     variant={'contained'}
                 >
-                    {isLoading? <CircularProgress size= {40} color ={'primary'}/> : <>Login</>}
+                    {isLoading? <CircularProgress size= {40} color ={'primary'}/> : <>Entrar</>}
                     
-                    </Button>
+                    </StyledButton>
             </form>
-        </div>
+        </ContainerAll>
 
 
     )

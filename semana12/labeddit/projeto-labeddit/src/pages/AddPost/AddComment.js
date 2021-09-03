@@ -4,6 +4,7 @@ import React from 'react'
 import { useParams } from 'react-router'
 import { BASE_URL } from '../../constants/urls'
 import useForm from '../../hooks/useForm'
+import { ButtonStyled, StyledForm} from './styled'
 
 
 
@@ -38,16 +39,13 @@ const onSubmitForm = (event) => {
     return (
         <div>
             <form onSubmit={onSubmitForm}>
-                <TextField
+                <StyledForm
                     name={'body'}
                     value={form.body}
                     onChange={onChange}
                     label={'Comentario'}
                 />
-                <Button
-                    type={'onSubmit'}
-                    color={"primary"}
-                >Comentar</Button>
+                <ButtonStyled>Comentar</ButtonStyled>
             </form>
         </div>
 
