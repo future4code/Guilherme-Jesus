@@ -4,13 +4,15 @@ import { useParams } from 'react-router-dom'
 import { BASE_URL } from '../../constants/urls'
 import useProtectedpage from '../../hooks/useProtectedPage'
 import useRequestData from '../../hooks/useRequestData'
+import AddComment from '../AddPost/AddComment'
 import { ContainerPostId, ContainerTamPost } from './styled'
 
 
 const PostPage = () => {
     useProtectedpage()
     const params = useParams()
-    const posts = useRequestData([],`${BASE_URL}/posts/${params.id}/comments`)[1]
+    const posts = useRequestData([],`${BASE_URL}/posts/${params.id}/comments`)[0]
+
     console.log(posts)
     
     return (
@@ -22,8 +24,11 @@ const PostPage = () => {
             title = {posts && posts.username}
             />
             <Typography  align={'center'} variant={"h3"}>{posts && posts.body}</Typography>
+            <AddComment/>
             </ContainerTamPost>
         </ContainerPostId>
+         
+        
     ) 
 }
 

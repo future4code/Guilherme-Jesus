@@ -11,6 +11,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { goToAddPost, goToPost } from '../../routes/coordinator'
 import { useHistory } from 'react-router-dom'
 import ChatIcon from '@material-ui/icons/Chat';
+import PostForm from '../AddPost/PostForm'
 
 const FeedPage = () => {
     useProtectedpage()
@@ -49,14 +50,9 @@ const FeedPage = () => {
 
     return (
         <div>
-            <h1>Página do Feed</h1>
+            <PostForm/>
+            <Typography align={'center'} variant="h5" component="h5" color="textPrimary">Feed</Typography>
             {cardsOfFeed}
-            <AddPostFeed
-                color={'primary'}
-                onClick = {()=>goToAddPost(history)}
-                >
-                <Add />
-            </AddPostFeed>
         </div>
 
     )

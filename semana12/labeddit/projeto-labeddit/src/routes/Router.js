@@ -29,12 +29,6 @@ const Router = ({setRightButton}) => {
                 <Route exact path="/">
                     <FeedPage />
                 </Route>
-
-                <Route exact path="/posts">
-                    <PostForm/>
-                </Route>
-
-    
             </Switch>
       
     )
