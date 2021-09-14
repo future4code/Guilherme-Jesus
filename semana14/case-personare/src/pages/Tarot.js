@@ -1,23 +1,25 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { imagesUrl, imageBackCard } from '../constants/urls'
 import { StyledTitle } from './StyledTarot'
 
 
-export const Tarot = () => {
+const Tarot = () => {
 
-    const [data, setData] = useState({imagesUrl: '', imageBackCard:'',name:'',image:''})
+    const [baralho, setBaralho] = useState([])
+console.log(baralho)
 
     const listaDeCartas = (() => {
 
-        axios.get("/tarot.json")
+        axios.get('tarot.json')
 
             .then((res) => {
                 console.log(res.data)
-                setData(res.data.json())
+                setBaralho(res.data.cards)
 
             })
             .catch((err) => {
-                setData(err.data)
+                setBaralho(err.data)
 
             })
 
@@ -27,10 +29,26 @@ export const Tarot = () => {
     }, [])
 
 
+const tarotCards = baralho && baralho.map((itens)=>{   
+return (
+    <div key={itens.cards}>
+      
+      <h4>{itens.name}</h4>
+      <img src={`${imagesUrl}${itens.image}`}></img>
+      <img src={`${imageBackCard}`}></img>
 
+
+    </div>
+)
+
+})
 
     return (
+    <div>
         <StyledTitle>Escolha sua carta</StyledTitle>
+        {tarotCards}
+        </div>
+
     )
 
 
