@@ -1,7 +1,8 @@
+import { Button, Container } from '@material-ui/core'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { imagesUrl, imageBackCard } from '../constants/urls'
-import { StyledTitle } from './StyledTarot'
+import {ContainerGeral, StyledBack, StyledCards, StyledFront, StyledTitle } from './StyledTarot'
 
 
 const Tarot = () => {
@@ -31,21 +32,25 @@ console.log(baralho)
 
 const tarotCards = baralho && baralho.map((itens)=>{   
 return (
-    <div key={itens.cards}>
-      
-      <h4>{itens.name}</h4>
+    <ContainerGeral>
+    <StyledCards  key={itens.cards}>  
+      <StyledFront>
       <img src={`${imagesUrl}${itens.image}`}></img>
+      <h4>{itens.name}</h4>
+      </StyledFront>
+    
+      <StyledBack>
       <img src={`${imageBackCard}`}></img>
-
-
-    </div>
-)
+        </StyledBack>
+    </StyledCards>
+    </ContainerGeral>
+) 
 
 })
 
     return (
     <div>
-        <StyledTitle>Escolha sua carta</StyledTitle>
+         <StyledTitle>Escolha sua carta</StyledTitle>
         {tarotCards}
         </div>
 
