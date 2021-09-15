@@ -1,8 +1,7 @@
-import { Button, Container } from '@material-ui/core'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { imagesUrl, imageBackCard } from '../constants/urls'
-import {ContainerGeral, StyledBack, StyledCards, StyledFront, StyledTitle } from './StyledTarot'
+import { imageBackCard, imagesUrl } from '../constants/urls'
+import { ContainerAll, StyledBack, StyledCards, StyledFront, StyledFrontBack, StyledTitle } from './StyledTarot'
 
 
 const Tarot = () => {
@@ -25,6 +24,7 @@ console.log(baralho)
             })
 
     })
+    
     useEffect(() => {
         listaDeCartas()
     }, [])
@@ -32,18 +32,18 @@ console.log(baralho)
 
 const tarotCards = baralho && baralho.map((itens)=>{   
 return (
-    <ContainerGeral>
-    <StyledCards  key={itens.cards}>  
+    <ContainerAll>
+    <StyledCards key={itens.cards}>  
       <StyledFront>
       <img src={`${imagesUrl}${itens.image}`}></img>
-      <h4>{itens.name}</h4>
       </StyledFront>
     
       <StyledBack>
       <img src={`${imageBackCard}`}></img>
-        </StyledBack>
+      </StyledBack> 
     </StyledCards>
-    </ContainerGeral>
+
+    </ContainerAll>
 ) 
 
 })
