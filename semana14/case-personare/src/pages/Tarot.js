@@ -35,8 +35,8 @@ const Tarot = () => {
     const tarotCards = baralho && baralho.map((itens) => {
         return (
             <ContainerGeral key={itens.cards}>
+                <h4>{`${itens.name}`}</h4>
                 <img src={`${imagesUrl}${itens.image}`}></img>
-                <img src={`${imageBackCard}`}></img>
             </ContainerGeral>
         )
 
@@ -44,29 +44,22 @@ const Tarot = () => {
 
     const backCards = baralho && baralho.map((backs) => {
         return (
-            <ContainerBack>
-
-            </ContainerBack>
-
+            <ContainerGeral key={backs.cards}>
+                <img src={`${imageBackCard}`}></img>
+            </ContainerGeral>
         )
-
     })
 
-    tarotCards.sort(() => Math.random() - 0.5)
-    const random = Math.floor(Math.random() * tarotCards.length)
-    const tarotRandom = tarotCards[random]
     
-   
 
     return (
         <div>
-            <button onClick={() => handleClick(false)}> Clique aqui!</button>
-            <ContainerAll isFlipped={isFlipped}>
-                {tarotCards}
+            <button onClick={() => handleClick()}> Embaralhe Aqui!</button>
+            <ContainerAll>
+                {isFlipped ? backCards : tarotCards.sort(() => Math.random() - 0.5)}
             </ContainerAll>
         </div>
     )
-
 
 
 }

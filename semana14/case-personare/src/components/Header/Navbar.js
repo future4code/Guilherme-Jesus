@@ -1,5 +1,3 @@
-import { Toolbar } from '@material-ui/core';
-import AppBar from '@material-ui/core/AppBar';
 import { StyledAppBar, StyledToolbar } from '../StyledNavBar';
 
 

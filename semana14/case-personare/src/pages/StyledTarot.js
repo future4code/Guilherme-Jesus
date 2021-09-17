@@ -19,7 +19,6 @@ export const ContainerBack = styled.div`
 justify-content: center;
  align-items: center;
  
-
 `
 
 // export const StyledFront =styled.div`
