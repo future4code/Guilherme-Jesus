@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { imageBackCard, imagesUrl } from '../constants/urls'
-import { ContainerAll, ContainerBack, ContainerGeral } from './StyledTarot'
+import { ContainerAll, ContainerBack, ContainerGeral, StyledButton } from './StyledTarot'
 
 const Tarot = () => {
     const [isFlipped, setIsFlipped] = useState(false)
@@ -32,6 +32,8 @@ const Tarot = () => {
         listaDeCartas()
     }, [])
 
+    
+
     const tarotCards = baralho && baralho.map((itens) => {
         return (
             <ContainerGeral key={itens.cards}>
@@ -54,13 +56,11 @@ const Tarot = () => {
 
     return (
         <div>
-            <button onClick={() => handleClick()}> Embaralhe Aqui!</button>
+            <StyledButton onClick={() => handleClick()}> Embaralhe Aqui!</StyledButton>
             <ContainerAll>
                 {isFlipped ? backCards : tarotCards.sort(() => Math.random() - 0.5)}
             </ContainerAll>
         </div>
     )
-
-
 }
 export default Tarot
