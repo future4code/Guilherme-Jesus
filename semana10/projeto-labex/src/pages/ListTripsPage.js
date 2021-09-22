@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
+import { BASE_URL } from '../components/url'
 
 const ListPageContainer = styled.div`
     box-shadow: -33px -24px 3px -14px rgba(241, 198, 101, 0.84);
@@ -46,7 +47,7 @@ export const ListTripsPage = () => {
 
     const getTripsList = () => {
         axios
-            .get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/trips')
+            .get(`${BASE_URL}/trips`)
             .then((res) => {
                 console.log(res.data.trips)
                 setListTrips(res.data.trips)

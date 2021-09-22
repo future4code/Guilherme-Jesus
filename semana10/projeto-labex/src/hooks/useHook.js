@@ -8,7 +8,7 @@ const useHook = (initialState) => {
         const { name, value } = event.target
         setForm({ ...form, [name]: value })
     }
-    return { form, onChange }
+    return  [form, onChange ]
 }
 
 export default useHook
