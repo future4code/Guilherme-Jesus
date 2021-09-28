@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
 import useHook from '../hooks/useHook'
 import styled from 'styled-components'
+import { BASE_URL } from '../components/url'
 
 const PageFormContainer = styled.div`
  input{
@@ -39,7 +40,7 @@ export const ApplicationFormPage = () => {
         console.log('formulario enviado')
         event.preventDefault()
         axios
-            .post('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/trips/id/apply',form)
+            .post(`${BASE_URL}/trips/id/apply`,form)
             .then((res) => {
                 settripId('Deu bão', res.data.trips)
                 history.push('/admin/trips/id')
@@ -63,7 +64,7 @@ export const ApplicationFormPage = () => {
                 <form onSubmit={applyTrip}>{tripsComponents}
                     <select>
                         <option
-                            name='planet'
+                            name="planet"
                             value={form.planet}
                             onChange={onChange}
                             placeholder="Escolha um Planeta">

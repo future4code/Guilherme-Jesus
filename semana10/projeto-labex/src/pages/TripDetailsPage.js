@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useHook from '../hooks/useHook'
 import styled from 'styled-components'
+import { BASE_URL } from '../components/url'
 
 const CandidatesContainer = styled.div`
    box-shadow: -33px -24px 3px -14px rgba(241, 198, 101, 0.84);
@@ -41,7 +42,7 @@ export const TripDetailsPage = () => {
     useEffect(() => {
         const token = localStorage.getItem('token')
         axios
-            .get('https://us-central1-labenu-apis.cloudfunctions.net/labeX/guilherme-jesus-lovelace/trip/id',{
+            .get(`${BASE_URL}/trip/id`,{
                 headers: {
                     auth: token
                 }

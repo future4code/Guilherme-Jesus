@@ -1,0 +1,17 @@
+{
+  "name": "first-script",
+  "version": "1.0.0",
+  "description": "Exercicios TypeScript",
+  "main": "index.js",
+  "dependencies": {
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./build/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
