@@ -17,12 +17,19 @@ app.get("/", async (req, res) =>{
    res.send("HELLO WORLD")
 })
 
-   const searchActor = async (name: string): Promise<any> => {
-      const result = await connection.raw(`
-        SELECT * FROM Actor WHERE name = "${name}"
-      `)
-      return result
-   }
+app.get("/actors", async (req,res)=>{
+ try{
+    
+    const result = await connection.raw(`SELECT * FROM Actor WHERE name ="${name}"`)
+    const actors = result [0]
+    res.send(actors)
+
+ } catch (error){
+    console.log(error);
+    res.status(500).send(error)
+    
+ }
+})
 
 
 
