@@ -1,29 +1,28 @@
 import express, {Express} from 'express'
 import cors from 'cors'
 import { AddressInfo } from "net";
-import knex from "knex";
-import dotenv from "dotenv";
-
-dotenv.config();
-
-
-export const connection = knex({
-	client: "mysql",
-	connection: {
-    host: process.env.DB_HOST,
-    port: 3306,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
-    multipleStatements: true
-  }
-});
+import { connection } from './connection';
 
 const app: Express = express();
 
 app.use(express.json());
 app.use(cors());
 
+
+
+app.get("/", async (req, res) =>{
+   const result = connection.raw("Show Tables")
+   console.log(result);
+   
+   res.send("HELLO WORLD")
+})
+
+   const searchActor = async (name: string): Promise<any> => {
+      const result = await connection.raw(`
+        SELECT * FROM Actor WHERE name = "${name}"
+      `)
+      return result
+   }
 
 
 
