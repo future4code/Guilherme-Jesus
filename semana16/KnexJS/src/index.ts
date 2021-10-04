@@ -8,30 +8,75 @@ const app: Express = express();
 app.use(express.json());
 app.use(cors());
 
+//1
+
+const searchActor = async (name: string): Promise<any> => {
+   const result = await connection.raw(`
+     SELECT * FROM Actor WHERE name = "${name}"
+   `)
+   return result
+ };
+
+ const countActors = async (gender: string): Promise<any> => {
+   const result = await connection.raw(`
+     SELECT COUNT(*) as count FROM Actor WHERE gender = "${gender}"
+   `);
+   const count = result[0][0].count;
+   return count;
+ };
+
+//2
+
+const updateActor = async (id: string, salary: number): Promise<any> => {
+   await connection("Actor")
+     .update({
+       salary: salary,
+     })
+     .where("id", id);
+ };
+
+ const deleteActor = async (id: string): Promise<void> => {
+   await connection("Actor")
+     .delete()
+     .where("id", id);
+ }; 
+
+ const avgSalary = async (gender: string): Promise<any> => {
+   const result = await connection("Actor")
+     .avg("salary as average")
+     .where({ gender });
+ 
+   return result[0].average;
+ };
 
 
-app.get("/", async (req, res) =>{
-   const result = connection.raw("Show Tables")
-   console.log(result);
-   
-   res.send("HELLO WORLD")
-})
+ //3
+ app.get("/actor", async (req: Request, res: Response) => {
+   try {
+     const count = await countActors(req.query.gender as string);
+     res.status(200).send({
+       quantity: count,
+     });
+   } catch (err) {
+     res.status(400).send({
+       message: err.message,
+     });
+   }
+ });
 
-app.get("/actors", async (req,res)=>{
- try{
-    
-    const result = await connection.raw(`SELECT * FROM Actor WHERE name ="${name}"`)
-    const actors = result [0]
-    res.send(actors)
-
- } catch (error){
-    console.log(error);
-    res.status(500).send(error)
-    
- }
-})
-
-
+ //4
+ app.put("/actor", async (req, res) => {
+   try {
+     await updateSalary(req.body.id, req.body.salary);
+     res.status(200).send({
+       message: "Success",
+     });
+   } catch (err) {
+     res.status(400).send({
+       message: err.message,
+     });
+   }
+ });
 
 const server = app.listen(process.env.PORT || 3003, () => {
     if (server) {
